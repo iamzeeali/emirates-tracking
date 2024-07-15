@@ -1,0 +1,95 @@
+.timeline {
+  width: 30%;
+  position: relative;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #8a8a8a;
+  height: 100%;
+  margin-top: 2px;
+  margin-bottom: -20px;
+}
+.timeline-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  position: relative;
+}
+.timeline-item .icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 18px;
+  margin-right: 10px;
+  position: relative;
+  z-index: 1;
+}
+.timeline-item .text {
+  flex: 1;
+  padding: 10px;
+  border-radius: 50px;
+  position: relative;
+  padding: 10px;
+  z-index: 1;
+}
+.po-receive-date {
+  background-color: #f5a623;
+}
+.material-readiness-date {
+  background-color: #f5a623;
+}
+.planned-for-picking {
+  background-color: #f8e71c;
+}
+.picked-from-vendor {
+  background-color: #a2f2f0;
+}
+.received-at-el-cross-dock {
+  background-color: #fa8282;
+}
+.dispatched-from-el-cross-dock {
+  background-color: #addbb7;
+}
+.delivered-at-customer {
+  background-color: #7ed321;
+}
+
+.po-receive-date-text {
+  background-color: #f8c471;
+}
+.material-readiness-date-text {
+  background-color: #f8c471;
+}
+.planned-for-picking-text {
+  background-color: #fbbf24;
+}
+.picked-from-vendor-text {
+  background-color: #a2f2f0;
+}
+.received-at-el-cross-dock-text {
+  background-color: #fa8282;
+}
+.dispatched-from-el-cross-dock-text {
+  background-color: #addbb7;
+}
+.delivered-at-customer-text {
+  background-color: #a3e635;
+}
+.timeline-item:last-child::after {
+  content: none;
+}
+.date-style {
+  margin-left: 60px;
+  margin-top: -18px;
+  font-size: 12px;
+  color: #8a8a8a;
+}
