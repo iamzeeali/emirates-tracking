@@ -28,6 +28,8 @@ const TrackStatus = ({
   transDateForDirect,
   transDateForReceive,
   transDateForDoDirect,
+  manualAsn,
+  manualGrn,
   giNoForGRN,
   giNoForDD,
   giNoForDO,

@@ -1,5 +1,6 @@
 .timeline {
-  width: 30%;
+  width: auto;
+  max-width: 400px;
   position: relative;
 }
 .timeline::before {

@@ -8,6 +8,9 @@ const asnSchema = new mongoose.Schema({
   poNumber: {
     type: String,
   },
+  docDate: {
+    type: Date,
+  },
   asnUploadDate: {
     type: Date,
   },

@@ -120,7 +120,7 @@ const UploadEcci = ({ getLimitedAsns, getLimitedGrns, asns, grns }) => {
                       accept='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
                       required
                     />
-                    <label className='custom-file-label' for='inputGroupFile01'>
+                    <label className='custom-file-label' for='ecci'>
                       Choose file
                     </label>
                   </div>
@@ -179,13 +179,13 @@ const UploadEcci = ({ getLimitedAsns, getLimitedGrns, asns, grns }) => {
                       type='file'
                       className='custom-file-input'
                       id='grnFile'
-                      aria-describedby='inputGroupFileAddon01'
+                      aria-describedby='inputGroupFile01'
                       name='grnFile'
                       onChange={onFileChangeTwo}
                       accept='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
                       required
                     />
-                    <label className='custom-file-label' for='inputGroupFile01'>
+                    <label className='custom-file-label' for='grnFile'>
                       Choose file
                     </label>
                   </div>

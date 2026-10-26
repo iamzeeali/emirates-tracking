@@ -27,7 +27,7 @@ const upload = multer({ storage: storage });
 
 // -> Express Upload RestAPIs
 router.route("/").post(upload.single("asnFile"), (req, res) => {
-  if (req.file && req.file.originalname === "asn_rep22246.xlsx") {
+  if (req.file && req.file.originalname === "asn_rep22246.xlsx" || req.file.originalname === 'asn_rep22246.csv') {
     convertPoExcelToJson(
       __basedir + "/uploads/" + req.file.filename,
       req.user
@@ -60,6 +60,7 @@ function convertPoExcelToJson(filePath, user) {
         // Mapping columns to keys
         columnToKey: {
           A: "poNumber",
+          C: "docDate",
           D: "asnUploadDate",
           I: "vendorCode",
           J: "vendorName",

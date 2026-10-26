@@ -28,7 +28,7 @@ const upload = multer({ storage: storage });
 
 // -> Express Upload RestAPIs
 router.route("/").post(upload.single("grnFile"), (req, res) => {
-  if (req.file && req.file.originalname === "grn_rep22248.xlsx") {
+  if (req.file && req.file.originalname === "grn_rep22248.xlsx" || req.file.originalname === 'grn_rep22248.csv') {
     convertGrnExcelToJson(
       __basedir + "/uploads/" + req.file.filename,
       req.user
@@ -61,7 +61,7 @@ function convertGrnExcelToJson(filePath, user) {
         columnToKey: {
           D: "transactionType",
           E: "modeOfDelivery",
-          K: "poNumber",
+          M: "poNumber",
           Q: "vendorCode",
           R: "vendorName",
           T: "inDate",

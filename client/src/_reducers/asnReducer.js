@@ -4,6 +4,7 @@ const initialState = {
   asn: null,
   asns: [],
   asnUploadDate: "",
+  docDate: "",
   manual: "",
   error: {},
   filtered: null,
@@ -24,6 +25,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         asns: payload,
+        docDate: payload.data.data[0].docDate,
         asnUploadDate: payload.data.data[0].asnUploadDate,
         manual: payload.data.data[0].manual,
         loading: false,
@@ -55,7 +57,8 @@ export default function (state = initialState, action) {
             asn.poNumber.match(regex) ||
             asn.vendorCode.match(regex) ||
             asn.vendorName.match(regex) ||
-            asn.asnUploadDate.match(regex)
+            asn.asnUploadDate.match(regex) ||
+            asn.docDate.match(regex)
           );
         }),
       };

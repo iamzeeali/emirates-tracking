@@ -79,11 +79,10 @@ const AddFeedback = ({ addFeedback, history }) => {
 
       <div className="footer">
         <p style={{ fontSize: '13px' }} className="text-black">
-          &copy; 2024, OWM Logistics | Developed By{' '}
+          &copy; 2024, Emirates Logistics | Developed By{' '}
           <a href="http://globuslabs.com" className="text-dark" target="_blank">
             Globus Labs
           </a>{' '}
-          (Official IT Partner)
         </p>
       </div>
     </div>

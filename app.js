@@ -22,7 +22,7 @@ var path = require('path');
 const app = express();
 
 // const DB = process.env.DATABASE;
-const DB = 'mongodb://localhost:27017/owmInventory';
+const DB = 'mongodb://localhost:27017/visitrace_emirateslogisticstracker?authSource=admin&readPreference=primary&ssl=false';
 // const DB = "mongodb://globushub_zee:XnVD88nh_@103.120.178.168:27017"
 // const DB = "mongodb://103.120.178.168:27017/globushub_support-gl";
 

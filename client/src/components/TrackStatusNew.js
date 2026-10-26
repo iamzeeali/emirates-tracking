@@ -23,13 +23,12 @@ const TrackStatusNew = ({
     received,
     getAsns,
     asns,
+    docDate,
     asnUploadDate,
     transDate,
     transDateForDirect,
     transDateForReceive,
     transDateForDoDirect,
-    manualAsn,
-    manualGrn,
     giNoForGRN,
     giNoForDD,
     giNoForDO,
@@ -244,6 +243,17 @@ const TrackStatusNew = ({
         }
     }
 
+    function increaseDateBy2(s, manual) {
+        if (!manual) {
+            var d = moment(s).toDate();
+            var increasePlanDate = new Date(d.setDate(d.getDate() + 2));
+
+            return increasePlanDate;
+        } else {
+            return s;
+        }
+    }
+
     return (
         <div className='status'>
             <div className='status-overlay'>
@@ -254,10 +264,9 @@ const TrackStatusNew = ({
                             <br />
                             Vendor: {vendor()}
                             <br />
-
-                            Pickup: Dubai
+                            {/* Pickup: Dubai */}
                             <br />
-                            Delivery plant: 10000
+                            {/* Delivery plant: 10000 */}
                         </div>
                     </div>
                 </div>
@@ -270,20 +279,22 @@ const TrackStatusNew = ({
                                     PO receive Date<br />
                                 </div>
                             </div>
-                            <p class="date-style">{asnUploadDate ? (
+                            <p class="date-style">{docDate ? (
                                 <Moment format='DD-MMM-YYYY'>
-                                    {increaseDateBy1(asnUploadDate)}
+                                    {increaseDateBy1(docDate)}
                                 </Moment>
                             ) : (
                                 'Unavailable'
                             )}</p>
+
+
                             <div class="timeline-item">
                                 <div class="icon planned-for-picking">✅</div>
                                 <div class="text planned-for-picking-text">Planned for Picking</div>
                             </div>
                             <p class="date-style">{asnUploadDate ? (
                                 <Moment format='DD-MMM-YYYY'>
-                                    {increaseDateBy1(asnUploadDate)}
+                                    {increaseDateBy2(asnUploadDate)}
                                 </Moment>
                             ) : (
                                 'Unavailable'
@@ -363,82 +374,73 @@ const TrackStatusNew = ({
 
 
 
-                            {giNoForGRN || giNoForDD || giNoForDO || giNoForDODD ? (
-                                ddTransit.results > 0 || ddDo.results > 0 ? null : (
-                                    <>
-                                        <div class="timeline-item">
-                                            <div class="icon dispatched-from-el-cross-dock">🚚</div>
-                                            <div class="text dispatched-from-el-cross-dock-text">
-                                                Dispatched from EL Cross-dock
-                                            </div>
-                                        </div>
-                                        <p className="date-style">
-                                            <Moment format='DD-MMM-YYYY'>
-                                                {increaseDateBy1(
-                                                    mrTransit.results > 0
-                                                        ? mrTransit.data.data[0].transDate
-                                                        : received.results > 0
-                                                            ? received.data.data[0].transDate
-                                                            : "",
-                                                    mrTransit.results > 0
-                                                        ? mrTransit.data.data[0].manual
-                                                        : received.results > 0
-                                                            ? received.data.data[0].manual
-                                                            : ""
-                                                )}
-                                            </Moment>
-                                        </p>
-                                    </>
-
-                                )
-                            ) : (
-                                <>
-                                    <div class="timeline-item">
-                                        <div class="icon dispatched-from-el-cross-dock">🚚</div>
-                                        <div class="text dispatched-from-el-cross-dock-text">
-                                            Dispatched from EL Cross-dock
-                                        </div>
+                            <>
+                                <div class="timeline-item">
+                                    <div class="icon dispatched-from-el-cross-dock">🚚</div>
+                                    <div class="text dispatched-from-el-cross-dock-text">
+                                        Dispatched from EL Cross-dock
                                     </div>
-                                    <p class="date-style">Unavailable</p>
-                                </>
-
-                            )}
-
-
-
-
-
-
-
-                            {giNoForGRN || giNoForDD || giNoForDO || giNoForDODD ? (
-                                <>
-                                    <div class="timeline-item">
-                                        <div class="icon delivered-at-customer">🚛</div>
-                                        <div class="text delivered-at-customer-text">
-                                            {Date.parse(deliveryDate) > Date.parse(state.currentDate)
-                                                ? "Expected Delivery at Customer Location"
-                                                : "Delivered at Customer Location"}
-                                        </div>
-                                    </div>
+                                </div>
+                                {mrTransit.results > 0 || received.results > 0 ? (
                                     <p className="date-style">
                                         <Moment format='DD-MMM-YYYY'>
-                                            {deliveryDate !== "NaN-undefined-NaN"
-                                                ? deliveryDate
-                                                : ""}
+                                            {increaseDateBy1(
+                                                mrTransit.results > 0
+                                                    ? mrTransit.data.data[0].transDate
+                                                    : received.results > 0
+                                                        ? received.data.data[0].transDate
+                                                        : "",
+                                                mrTransit.results > 0
+                                                    ? mrTransit.data.data[0].manual
+                                                    : received.results > 0
+                                                        ? received.data.data[0].manual
+                                                        : ""
+                                            )}
                                         </Moment>
                                     </p>
-                                </>
-                            ) : (
-                                <>
-                                    <div class="timeline-item">
-                                        <div class="icon delivered-at-customer">🚛</div>
-                                        <div class="text delivered-at-customer-text">
-                                            Delivered at Customer Location
-                                        </div>
+                                ) : (
+                                    <p className="date-style"> Unavailable</p>
+                                )}
+                            </>
+
+
+
+
+
+
+
+
+                            <>
+                                <div class="timeline-item">
+                                    <div class="icon delivered-at-customer">🚛</div>
+                                    <div class="text delivered-at-customer-text">
+                                        {Date.parse(deliveryDate) > Date.parse(state.currentDate)
+                                            ? "Expected Delivery at Customer Location"
+                                            : "Delivered at Customer Location"}
                                     </div>
-                                    <p class="date-style">Unavailable</p>
-                                </>
-                            )}
+                                </div>
+                                {mrTransit.results > 0 || received.results > 0 ? (
+                                    <p className="date-style">
+                                        <Moment format='DD-MMM-YYYY'>
+                                            {increaseDateBy1(
+                                                mrTransit.results > 0
+                                                    ? mrTransit.data.data[0].transDate
+                                                    : received.results > 0
+                                                        ? received.data.data[0].transDate
+                                                        : "",
+                                                mrTransit.results > 0
+                                                    ? mrTransit.data.data[0].manual
+                                                    : received.results > 0
+                                                        ? received.data.data[0].manual
+                                                        : ""
+                                            )}
+                                        </Moment>
+                                    </p>
+                                ) : (
+                                    <p className="date-style"> Unavailable</p>
+                                )}
+                            </>
+
                         </div>
                     </div>
                 </div>
@@ -463,6 +465,7 @@ const mapStateToProps = (state) => ({
     asns: state.asn.asns,
     loading: state.asn.loading,
     asnUploadDate: state.asn.asnUploadDate,
+    docDate: state.asn.docDate,
     manualAsn: state.asn.manual,
     manualGrn: state.grn.manual,
     transDate: state.grn.transDate,

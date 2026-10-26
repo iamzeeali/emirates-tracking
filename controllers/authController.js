@@ -19,7 +19,7 @@ exports.signupUser = catchAsync(async (req, res, next) => {
  <br/>
  <br/>
  <p>Regards, </p>
- <p>OWM Logistics, </p>`;
+ <p>Emirates Logistics, </p>`;
 
   try {
     // await sendEmail({
