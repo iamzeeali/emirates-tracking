@@ -6,7 +6,11 @@ process.on('uncaughtException', (err) => {
   process.exit(1);
 });
 
-dotenv.config({ path: './config.env' });
+const fs = require('fs');
+if (fs.existsSync('./config.env')) {
+  dotenv.config({ path: './config.env' });
+}
+dotenv.config(); // loads .env if present
 const app = require('./app');
 
 const port = process.env.PORT || 5000;
